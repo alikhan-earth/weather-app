@@ -2,14 +2,25 @@
 from coordinates import get_coordinates
 from weather_api_service import get_weather
 from weather_formatter import format_weather
+from exceptions import CantGetCoordinates, WeatherApiServiceError
 
 
 def main(place: str):
-    coordinates = get_coordinates(place)
-    weather = get_weather(coordinates)
+    try:
+        coordinates = get_coordinates(place)
+    except CantGetCoordinates:
+        print('Не удалось получить координаты')
+        exit(1)
+    
+    try:
+        weather = get_weather(coordinates)
+    except WeatherApiServiceError:
+        print('Не удалось получить погоду по координатам')
+        exit(1)
+
     print(format_weather(weather))
 
 
 if __name__ == '__main__':
-    place = input('Enter the place: ')
+    place = input('Введите название местности: ')
     main(place)
