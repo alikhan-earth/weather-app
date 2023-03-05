@@ -55,7 +55,7 @@ class JSONFileWeatherStorage(WeatherStorage):
     
     def _write(self, history: List[HistoryRecord]) -> None:
         with open(self._jsonfile, 'w') as f:
-            json.dump(history, f, indent=4)
+            json.dump(history, f, ensure_ascii=False, indent=4)
 
 
 def save_weather(weather: Weather, storage: WeatherStorage) -> None:

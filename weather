@@ -1,4 +1,6 @@
 #!/usr/bin/env python3.10
+import sys
+from argparse import ArgumentParser
 from pathlib import Path
 
 from coordinates import get_coordinates
@@ -8,9 +10,14 @@ from history import save_weather, JSONFileWeatherStorage
 from exceptions import CantGetCoordinates, WeatherApiServiceError
 
 
-def main(place: str):
+def main():
+    # Getting the name of a place as a command line argument
+    parser = ArgumentParser()
+    parser.add_argument('place', help='Terrain weather to get')
+    parsed_args = parser.parse_args(sys.argv[1:])
+
     try:
-        coordinates = get_coordinates(place)
+        coordinates = get_coordinates(parsed_args.place)
     except CantGetCoordinates:
         print('Не удалось получить координаты')
         exit(1)
@@ -23,6 +30,7 @@ def main(place: str):
 
     print(format_weather(weather))
 
+    # Save weather data to storage
     save_weather(
         weather,
         JSONFileWeatherStorage(Path.cwd() / 'history.json')
@@ -30,5 +38,7 @@ def main(place: str):
 
 
 if __name__ == '__main__':
-    place = input('Введите название местности: ')
-    main(place)
+    try:
+        main()
+    except KeyboardInterrupt:
+        exit(1)
