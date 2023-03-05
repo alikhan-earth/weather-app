@@ -1,4 +1,31 @@
 [[package]]
+name = "mypy"
+version = "1.0.1"
+description = "Optional static typing for Python"
+category = "dev"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+mypy-extensions = ">=0.4.3"
+tomli = {version = ">=1.1.0", markers = "python_version < \"3.11\""}
+typing-extensions = ">=3.10"
+
+[package.extras]
+dmypy = ["psutil (>=4.0)"]
+install-types = ["pip"]
+python2 = ["typed-ast (>=1.4.0,<2)"]
+reports = ["lxml"]
+
+[[package]]
+name = "mypy-extensions"
+version = "1.0.0"
+description = "Type system extensions for programs checked with the mypy type checker."
+category = "dev"
+optional = false
+python-versions = ">=3.5"
+
+[[package]]
 name = "python-dotenv"
 version = "1.0.0"
 description = "Read key-value pairs from a .env file and set them as environment variables"
@@ -9,10 +36,30 @@ python-versions = ">=3.8"
 [package.extras]
 cli = ["click (>=5.0)"]
 
+[[package]]
+name = "tomli"
+version = "2.0.1"
+description = "A lil' TOML parser"
+category = "dev"
+optional = false
+python-versions = ">=3.7"
+
+[[package]]
+name = "typing-extensions"
+version = "4.5.0"
+description = "Backported and Experimental Type Hints for Python 3.7+"
+category = "dev"
+optional = false
+python-versions = ">=3.7"
+
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "f0b4f16d90b0e15afa3686f786a2fe33c9a3bac8ccdb883b3e132b774549deec"
+content-hash = "50588a69bba44225e28c0e39cca27219700cf8603278d1b7f129f4a1a87f25ef"
 
 [metadata.files]
+mypy = []
+mypy-extensions = []
 python-dotenv = []
+tomli = []
+typing-extensions = []

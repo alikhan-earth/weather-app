@@ -12,12 +12,12 @@ from exceptions import CantGetCoordinates, WeatherApiServiceError
 
 def main():
     # Getting the name of a place as a command line argument
-    parser = ArgumentParser()
-    parser.add_argument('place', help='Terrain weather to get')
-    parsed_args = parser.parse_args(sys.argv[1:])
+    # parser = ArgumentParser()
+    # parser.add_argument('place', help='Terrain weather to get')
+    # parsed_args = parser.parse_args(sys.argv[1:])
 
     try:
-        coordinates = get_coordinates(parsed_args.place)
+        coordinates = get_coordinates('nozhay')
     except CantGetCoordinates:
         print('Не удалось получить координаты')
         exit(1)
